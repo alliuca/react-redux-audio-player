@@ -19,6 +19,7 @@ Install by running `yarn install`
 
 * dev mode: `yarn run dev`
 * build: `yarn run build`
+* test: `yarn run test` or `yarn run test:watch`
 
-TODO:
+### TODO:
 - [x] add mocha test framework and assertion library
