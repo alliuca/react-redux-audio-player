@@ -21,4 +21,4 @@ Install by running `yarn install`
 * build: `yarn run build`
 
 TODO:
-- [ ] add mocha test framework and assertion library
+- [x] add mocha test framework and assertion library
