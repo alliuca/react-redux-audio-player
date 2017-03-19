@@ -12,6 +12,7 @@ It includes:
   * [postcss-calc](https://github.com/postcss/postcss-calc)
   * [postcss-custom-properties](https://github.com/postcss/postcss-custom-properties)
 * ESLint
+* Mocha with Chai + JSDOM
 
 ## Usage
 
