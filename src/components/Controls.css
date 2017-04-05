@@ -1,0 +1,70 @@
+@import './../variables.css';
+
+.Controls-container {
+  position: relative;
+  display: inline-block;
+  width: 15%;
+
+  &--main {
+    width: 70%;
+  }
+
+  &--volume {
+    padding-top: 90px;
+    margin-top: -90px;
+  }
+
+  &--playback {
+    top: -4px;
+    left: 5px;
+    color: var(--controlsGrey);
+    font-size: .9rem;
+  }
+}
+
+.Controls button {
+  margin: 0 5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  vertical-align: middle;
+}
+
+.Controls-play {
+  width: 60px;
+  height: 60px;
+}
+
+.Controls-volume-range {
+  position: absolute;
+  left: 0;
+  width: 70px;
+  transform: translate(-8px, -50px) rotate(270deg);
+
+  &[disabled] {
+    display: none;
+  }
+}
+
+.Controls-playback {
+  font-weight: bold;
+}
+
+.Controls-playback-rate-list {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  display: none;
+  list-style: none;
+  padding: 0;
+  text-align: left;
+
+  li {
+    cursor: pointer;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}

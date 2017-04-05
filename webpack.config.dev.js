@@ -2,11 +2,14 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const SpritesmithPlugin = require('webpack-spritesmith');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const calc = require('postcss-calc');
-const customProperties = require('postcss-custom-properties');
+const cssVariables = require('postcss-css-variables');
 const nested = require('postcss-nested');
+const postcssImport = require('postcss-import');
+const customMedia = require('postcss-custom-media');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -32,7 +35,8 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx'],
+    modules: ['node_modules', 'images']
   },
   module: {
     rules: [
@@ -111,10 +115,12 @@ module.exports = {
             options: {
               ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
               plugins: () => [
+                postcssImport,
                 autoprefixer({
                   browsers: [ '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' ]
                 }),
-                customProperties,
+                customMedia,
+                cssVariables,
                 calc,
                 nested
               ]
@@ -136,6 +142,20 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
+      }
+    }),
+    // Generates sprites
+    new SpritesmithPlugin({
+      src: {
+        cwd: path.resolve(__dirname, 'src/images/icons'),
+        glob: '*.png'
+      },
+      target: {
+        image: path.resolve(__dirname, 'src/images/sprite.png'),
+        css: path.resolve(__dirname, 'src/images/sprite.css')
+      },
+      apiOptions: {
+        cssImageRef: '~sprite.png'
       }
     }),
     // enable HMR globally

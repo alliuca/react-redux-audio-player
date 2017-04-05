@@ -36,14 +36,17 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2",
-    "webpack-manifest-plugin": "^1.1.0"
+    "webpack-manifest-plugin": "^1.1.0",
+    "webpack-spritesmith": "^0.3.3"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
     "cssnano": "^3.10.0",
     "normalize.css": "^5.0.0",
     "postcss-calc": "^5.3.1",
-    "postcss-custom-properties": "^5.0.2",
+    "postcss-css-variables": "^0.7.0",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-import": "^9.1.0",
     "postcss-nested": "^1.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

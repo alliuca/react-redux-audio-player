@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { AppContainer } from 'react-hot-loader';
 
+import './index.css';
 import App from './components/App';
 import reducers from './reducers';
-import './index.css';
 
 const createStoreWithMiddleware = applyMiddleware(/* middlewares here */)(createStore);
 const store = createStoreWithMiddleware(reducers);

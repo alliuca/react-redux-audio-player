@@ -1,0 +1,7 @@
+.Player {
+  width: 100%;
+  min-width: 320px;
+  max-width: 390px;
+  min-height: 422px;
+  margin: 0 auto;
+}

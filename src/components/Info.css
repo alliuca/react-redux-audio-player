@@ -1,0 +1,18 @@
+@import '../variables.css';
+
+.Info {
+  margin-bottom: 1rem;
+}
+
+.Info-title {
+  margin-bottom: .9rem;
+  color: var(--headingColor);
+}
+
+.Info-album,
+.Info-author {
+  display: block;
+  margin-bottom: .4rem;
+  color: var(--cardTextColor);
+  font-size: .75rem;
+}
