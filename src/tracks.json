@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "cover": "cover.jpg",
+    "title": "Three Little Birds",
+    "author": "Bob Marley",
+    "album": "The best of Bob Marley & the Wailers",
+    "src": "02+Three+Little+Birds.mp3"
+  },
+  {
+    "id": 2,
+    "cover": "dalmation.jpg",
+    "title": "Girl Prowler",
+    "author": "Dalmatian",
+    "album": "Dalmation",
+    "src": "02+Girl+Prowler.mp3"
+  },
+  {
+    "id": 3,
+    "cover": "split+stones.jpg",
+    "title": "Morning Flats",
+    "author": "Lymbyc Systym",
+    "album": "Split Stones",
+    "src": "02+Morning+Flats.mp3"
+  }
+]

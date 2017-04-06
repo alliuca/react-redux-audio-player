@@ -2,7 +2,6 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SpritesmithPlugin = require('webpack-spritesmith');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const calc = require('postcss-calc');
@@ -35,8 +34,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],
-    modules: ['node_modules', 'images']
+    extensions: ['.js', '.json', '.jsx']
   },
   module: {
     rules: [
@@ -102,13 +100,14 @@ module.exports = {
       // "style" loader turns CSS into JS modules that inject <style> tags
       {
         test: /\.css$/,
+        exclude: path.resolve('src', 'components'),
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1
-            }
+            },
           },
           {
             loader: 'postcss-loader',
@@ -128,6 +127,38 @@ module.exports = {
           }
         ],
         include: [path.resolve('src'), path.resolve('node_modules/normalize.css')]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              import: false,
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
+              plugins: () => [
+                postcssImport,
+                autoprefixer({
+                  browsers: [ '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' ]
+                }),
+                customMedia,
+                cssVariables,
+                calc,
+                nested
+              ]
+            }
+          }
+        ],
+        include: path.resolve('src', 'components')
       }
       // end loaders
     ]
@@ -142,20 +173,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
-      }
-    }),
-    // Generates sprites
-    new SpritesmithPlugin({
-      src: {
-        cwd: path.resolve(__dirname, 'src/images/icons'),
-        glob: '*.png'
-      },
-      target: {
-        image: path.resolve(__dirname, 'src/images/sprite.png'),
-        css: path.resolve(__dirname, 'src/images/sprite.css')
-      },
-      apiOptions: {
-        cssImageRef: '~sprite.png'
       }
     }),
     // enable HMR globally

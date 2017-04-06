@@ -1,69 +1,105 @@
 @import './../variables.css';
 
-.Controls-container {
+.controls_container {
   position: relative;
   display: inline-block;
-  width: 15%;
+  width: 50%;
 
-  &--main {
-    width: 70%;
+  &__main {
+    width: 100%;
+    margin-bottom: 10px;
   }
 
-  &--volume {
-    padding-top: 90px;
-    margin-top: -90px;
+  &__volume {
+    padding-right: 25px;
+    padding-bottom: 10px;
+    text-align: right;
   }
 
-  &--playback {
-    top: -4px;
-    left: 5px;
-    color: var(--controlsGrey);
-    font-size: .9rem;
+  &__playback {
+    padding-left: 25px;
+    text-align: left;
   }
 }
 
-.Controls button {
+.controls button {
+  padding: 2px 6px;
   margin: 0 5px;
   background: none;
   border: 0;
   cursor: pointer;
   outline: none;
   vertical-align: middle;
-}
 
-.Controls-play {
-  width: 60px;
-  height: 60px;
-}
-
-.Controls-volume-range {
-  position: absolute;
-  left: 0;
-  width: 70px;
-  transform: translate(-8px, -50px) rotate(270deg);
-
-  &[disabled] {
-    display: none;
+  &:hover svg {
+    fill: #000;
   }
 }
 
-.Controls-playback {
+.controls_play {
+  width: 48px;
+  height: 48px;
+
+  svg {
+    fill: var(--uiBlack);
+  }
+}
+
+.controls_rewind,
+.controls_fastforward,
+.controls_prev,
+.controls_next,
+.controls_volume {
+  width: 44px;
+  height: 44px;
+
+  svg {
+    fill: var(--controlsGrey);
+  }
+}
+
+.controls_prev,
+.controls_next {
+  width: 30px;
+  height: 30px;
+}
+
+.controls_volume {
+  width: 35px;
+  height: 35px;
+}
+
+.icon_btn_mute {
+  position: relative;
+  top: 3px;
+  left: -4px;
+  width: 72%;
+  height: 72%;
+}
+
+.controls_volume_range {
+  width: 50%;
+  vertical-align: middle;
+}
+
+.controls_playback {
   font-weight: bold;
 }
 
-.Controls-playback-rate-list {
-  position: absolute;
-  bottom: 15px;
-  right: 0;
-  display: none;
+.controls_playback_rate_list {
   list-style: none;
   padding: 0;
+  color: var(--cardTextColor);
+  font-size: .8rem;
   text-align: left;
 
   li {
+    display: inline-block;
+    margin-right: 8px;
     cursor: pointer;
 
     &:hover {
+      color: var(--uiBlack);
       font-weight: bold;
     }
   }

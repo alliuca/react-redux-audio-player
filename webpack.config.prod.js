@@ -7,8 +7,11 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const calc = require('postcss-calc');
-const customProperties = require('postcss-custom-properties');
+const cssVariables = require('postcss-css-variables');
 const cssnano = require('cssnano');
+const nested = require('postcss-nested');
+const postcssImport = require('postcss-import');
+const customMedia = require('postcss-custom-media');
 
 const cssFilename = 'static/css/[name].[contenthash:8].css';
 // ExtractTextPlugin expects the build output to be flat.
@@ -105,7 +108,9 @@ module.exports = {
                 {
                   loader: 'css-loader',
                   options: {
-                    importLoaders: 1
+                    importLoaders: 1,
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]'
                   }
                 },
                 {
@@ -113,12 +118,14 @@ module.exports = {
                   options: {
                     ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
                     plugins: () => [
+                      postcssImport,
                       autoprefixer({
                         browsers: [ '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' ]
                       }),
-                      customProperties,
+                      customMedia,
+                      cssVariables,
                       calc,
-                      cssnano
+                      nested
                     ]
                   }
                 }

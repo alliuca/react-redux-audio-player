@@ -1,7 +1,10 @@
 .Player {
+  position: relative;
   width: 100%;
-  min-width: 320px;
+  min-width: 300px;
   max-width: 390px;
   min-height: 422px;
   margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
 }

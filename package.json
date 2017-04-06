@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-min-starter",
+  "name": "react-redux-audio-player",
   "version": "1.0.0",
-  "description": "A simple starter to build React/Redux applications",
+  "description": "A simple audio player powered by React/Redux",
   "main": "index.js",
   "license": "MIT",
   "author": "Luca Allievi",
@@ -36,8 +36,7 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.2",
-    "webpack-manifest-plugin": "^1.1.0",
-    "webpack-spritesmith": "^0.3.3"
+    "webpack-manifest-plugin": "^1.1.0"
   },
   "dependencies": {
     "autoprefixer": "^6.7.7",
@@ -48,10 +47,10 @@
     "postcss-custom-media": "^5.0.1",
     "postcss-import": "^9.1.0",
     "postcss-nested": "^1.0.0",
+    "rangetouch": "^0.0.9",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
-    "react-router": "^4.0.0",
     "redux": "^3.6.0"
   }
 }

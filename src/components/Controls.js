@@ -1,71 +1,74 @@
 import React, { Component } from 'react';
+window.rangetouch = require('rangetouch');
 
-import './Controls.css';
+import styles from './Controls.css';
 
 class Controls extends Component {
   constructor(props) {
     super(props);
 
-    this.playbackRateOptions = [0.5, 1, 1.25, 1.75, 2];
-  }
-
-  showPlaybackRateOptions(target) {
-    const visibility = target.nextSibling.style.display;
-    if (typeof visibility === 'undefined' || visibility === 'none')
-      target.nextSibling.style.display = 'block';
-    else
-      target.nextSibling.style.display = 'none';
+    this.playbackRateOptions = [0.5, 1, 1.25, 2];
   }
 
   render() {
     return (
-      <div className="Controls">
-        <div className="Controls-container Controls-container--playback">
-          <button
-            className="Controls-playback"
-            onClick={(e) => { this.showPlaybackRateOptions(e.target) }}>
-            {this.props.playbackRate}x
+      <div className={styles.controls}>
+        <div className={[styles.controls_container, styles.controls_container__main].join(' ')}>
+          <button className={styles.controls_next} onClick={() => {this.props.onChangeTrack('prev')}}>
+            <svg className="icon">
+              <use xlinkHref="#icon-btn-prev" />
+            </svg>
           </button>
-          <ul className="Controls-playback-rate-list">
+          <button className={styles.controls_rewind} onClick={() => {this.props.onSkip(-30)}}>
+            <svg className="icon">
+              <use xlinkHref="#icon-btn-rewind" />
+            </svg>
+          </button>
+          <button className={styles.controls_play} onClick={this.props.onPlay}>
+            <svg className="icon">
+              <use xlinkHref={this.props.paused ? '#icon-btn-play' : '#icon-btn-pause'} />
+            </svg>
+          </button>
+          <button className={styles.controls_fastforward} onClick={() => {this.props.onSkip(+30)}}>
+            <svg className="icon">
+              <use xlinkHref="#icon-btn-fastforward" />
+            </svg>
+          </button>
+          <button className={styles.controls_next} onClick={() => {this.props.onChangeTrack('next')}}>
+            <svg className="icon">
+              <use xlinkHref="#icon-btn-next" />
+            </svg>
+          </button>
+        </div>
+        <div className={[styles.controls_container, styles.controls_container__playback].join(' ')}>
+          <ul className={styles.controls_playback_rate_list}>
             {this.playbackRateOptions.map((opt) => {
               return (
                 <li
                   key={opt}
                   value={opt}
-                  style={this.props.playbackRate === opt ? { color: '#3a3a3a', fontWeight: 'bold' } : {}}
-                  onClick={(e) => this.props.updatePlaybackRate(e.target.getAttribute('value'))}>
+                  style={this.props.playbackRate === opt ? { color: '#898989', fontWeight: 'bold' } : {}}
+                  onClick={(e) => this.props.onPlaybackRate(e.target.getAttribute('value'))}>
                     {opt}x
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="Controls-container Controls-container--main">
-          <button onClick={() => this.props.handleForwardBackward(-30.0)}>
-            <i className="icon icon-btn-rewind"></i>
-          </button>
-          <button className="Controls-play" onClick={this.props.handlePlayPause.bind(this)}>
-            <i className={this.props.paused ? 'icon icon-btn-play' : 'icon icon-btn-pause'}></i>
-          </button>
-          <button onClick={() => this.props.handleForwardBackward(+30.0)}>
-            <i className="icon icon-btn-fastforward"></i>
-          </button>
-        </div>
         <div
-          className="Controls-container Controls-container--volume"
-          onMouseEnter={(e) => { e.currentTarget.lastChild.disabled = false }}
-          onMouseLeave={(e) => { e.currentTarget.lastChild.disabled = true }}>
-          <button className="Controls-volume">
-            <i className={`icon icon-btn-volume${this.props.volumeLevel}`}></i>
+          className={[styles.controls_container, styles.controls_container__volume].join(' ')}>
+          <button className={styles.controls_volume}>
+            <svg className={`icon ${this.props.volume === '0' ? styles.icon_btn_mute : ''}`}>
+              <use xlinkHref={this.props.volume === '0' ? '#icon-btn-mute' : '#icon-btn-volume'} />
+            </svg>
           </button>
           <input
-            className="Controls-volume-range"
+            className={styles.controls_volume_range}
             type="range"
             min="0"
             max="1.00"
             step="0.01"
-            disabled
-            onChange={this.props.adjustVolume.bind(this)} />
+            onChange={(e) => this.props.onVolume(e.currentTarget.value)} />
         </div>
       </div>
     );
