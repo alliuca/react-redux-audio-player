@@ -29,6 +29,7 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: 'source-map',
   entry: [ './src/index.js' ],
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'static/js/bundle.js',
@@ -154,11 +155,6 @@ module.exports = {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
-      }
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
       }
     }),
     // Minify the code.

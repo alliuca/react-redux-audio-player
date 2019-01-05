@@ -23,6 +23,7 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index.js'
   ],
+  mode: 'development',
   output: {
     // Not used in dev but WebpackDevServer crashes without it:
     path: path.resolve(__dirname, 'build'),
@@ -168,12 +169,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve('public/index.html'),
-    }),
-    // Makes some env variables available to the JS code
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
     }),
     // enable HMR globally
     new webpack.HotModuleReplacementPlugin()
