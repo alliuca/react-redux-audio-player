@@ -2,7 +2,7 @@
 
 It includes:
 
-* Webpack 2
+* Webpack 4
   * in development, Webpack Dev Server + HMR (css/js)
 * React and Redux
 * PostCSS
